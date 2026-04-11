@@ -28,11 +28,16 @@
             font-family: 'Inter', sans-serif;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             background-color: var(--white);
             color: var(--primary);
             line-height: 1.6;
             overflow-x: hidden;
+            width: 100%;
         }
 
         /* HEADER PREMIUM */
@@ -48,23 +53,25 @@
             backdrop-filter: blur(20px);
             z-index: 1000;
             border-bottom: 1px solid rgba(0,0,0,0.05);
+            transition: var(--transition);
         }
 
         .logo {
             font-weight: 900;
-            font-size: 1.6rem;
-            letter-spacing: -1.5px;
+            font-size: 1.4rem;
+            letter-spacing: -1px;
             text-transform: uppercase;
+            white-space: nowrap;
         }
 
         nav a {
             text-decoration: none;
             color: var(--primary);
-            margin-left: 30px;
-            font-size: 0.8rem;
+            margin-left: 20px;
+            font-size: 0.75rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
             transition: var(--transition);
         }
 
@@ -73,43 +80,45 @@
         /* HERO - FULL IMAGE */
         .hero {
             height: 100vh;
+            min-height: 600px;
             width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            background: url('https://lh3.googleusercontent.com/d/1Prfx8t_YBhbjlAZv8Ved2PtL3kkCDUZP') center/cover;
+            background: url('https://lh3.googleusercontent.com/d/1Prfx8t_YBhbjlAZv8Ved2PtL3kkCDUZP') center/cover no-repeat;
             color: white;
             text-align: center;
+            padding: 0 20px;
         }
 
         .hero::before {
             content: '';
             position: absolute;
             top:0; left:0; width:100%; height:100%;
-            background: rgba(0,0,0,0.4); /* Capa de contraste */
+            background: rgba(0,0,0,0.4);
         }
 
         .hero-content {
             position: relative;
             z-index: 10;
             max-width: 900px;
-            padding: 0 20px;
+            width: 100%;
         }
 
         .hero h1 {
-            font-size: 6rem;
+            font-size: clamp(2.5rem, 10vw, 6rem); /* Tamaño fluido */
             font-weight: 900;
-            line-height: 0.85;
-            letter-spacing: -4px;
+            line-height: 0.9;
+            letter-spacing: -2px;
             margin-bottom: 25px;
             text-transform: uppercase;
         }
 
         .hero p {
-            font-size: 1.1rem;
+            font-size: clamp(0.8rem, 2vw, 1.1rem);
             font-weight: 400;
-            letter-spacing: 4px;
+            letter-spacing: 3px;
             text-transform: uppercase;
             margin-bottom: 40px;
         }
@@ -117,7 +126,7 @@
         /* BOTONES */
         .btn-main {
             display: inline-block;
-            padding: 20px 45px;
+            padding: 18px 35px;
             background: var(--white);
             color: var(--primary);
             text-decoration: none;
@@ -126,6 +135,8 @@
             letter-spacing: 2px;
             text-transform: uppercase;
             transition: var(--transition);
+            border: none;
+            cursor: pointer;
         }
 
         .btn-main:hover {
@@ -133,46 +144,48 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         }
 
-        /* SECCIÓN SERVICIOS COMPACTA */
+        /* SECCIÓN SERVICIOS */
         .section-services {
-            padding: 100px 5%;
+            padding: 80px 5%;
             background: var(--white);
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 80px;
+            margin-bottom: 60px;
         }
 
         .section-header span {
             font-size: 0.7rem;
             font-weight: 900;
-            letter-spacing: 5px;
+            letter-spacing: 4px;
             text-transform: uppercase;
             display: block;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         .section-header h2 {
-            font-size: 3.5rem;
+            font-size: clamp(2rem, 5vw, 3.5rem);
             font-weight: 900;
-            letter-spacing: -2px;
+            letter-spacing: -1px;
             text-transform: uppercase;
         }
 
         .services-compact-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .service-box {
             position: relative;
-            height: 550px;
+            height: 500px;
             overflow: hidden;
             display: flex;
             align-items: flex-end;
-            padding: 40px;
+            padding: 30px;
             color: white;
             text-decoration: none;
             transition: var(--transition);
@@ -201,89 +214,105 @@
         }
 
         .service-info h3 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 800;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             text-transform: uppercase;
             line-height: 1.1;
         }
 
         .service-info p {
-            font-size: 0.95rem;
-            opacity: 0.8;
+            font-size: 0.9rem;
+            opacity: 0.9;
             font-weight: 300;
         }
 
-        .service-box:hover img { transform: scale(1.1); }
-        .service-box:hover { transform: translateY(-10px); }
+        .service-box:hover img { transform: scale(1.05); }
 
-        /* CONTACTO - DISEÑO PREMIUM */
+        /* CONTACTO */
         .contact-section {
-            padding: 120px 5%;
+            padding: 80px 5%;
             background: #000;
             color: white;
         }
 
         .contact-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 100px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 60px;
             align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-grid h2 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
         }
 
         .contact-info-list {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin-top: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
         }
 
         .info-card {
             border-left: 1px solid rgba(255,255,255,0.2);
-            padding-left: 20px;
+            padding-left: 15px;
         }
 
-        .info-card i { margin-bottom: 15px; color: #fff; }
-        .info-card h4 { font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; opacity: 0.5; }
-        .info-card p, .info-card a { color: #fff; text-decoration: none; font-weight: 600; font-size: 1.1rem; }
+        .info-card h4 { font-size: 0.65rem; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; opacity: 0.5; }
+        .info-card p, .info-card a { color: #fff; text-decoration: none; font-weight: 600; font-size: 1rem; word-break: break-all; }
 
-        /* WHATSAPP LOGO FIJO */
+        .contact-form-box {
+            background: rgba(255,255,255,0.05);
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* WHATSAPP */
         .wpp-fixed {
             position: fixed;
-            bottom: 40px;
-            right: 40px;
+            bottom: 25px;
+            right: 25px;
             background: var(--wpp-green);
             color: white;
-            width: 65px;
-            height: 65px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 2000;
-            box-shadow: 0 15px 35px rgba(37, 211, 102, 0.4);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
             transition: var(--transition);
         }
 
-        .wpp-fixed:hover { transform: scale(1.15) rotate(10deg); }
-
-        /* RESPONSIVE */
-        @media (max-width: 1100px) {
-            .services-compact-grid { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 4rem; }
-            .contact-grid { grid-template-columns: 1fr; gap: 50px; }
+        /* RESPONSIVE ADJUSTMENTS */
+        @media (max-width: 768px) {
+            header { padding: 15px 5%; }
+            nav { display: none; } /* Oculta nav en móvil para limpieza */
+            .hero { height: 80vh; }
             .service-box { height: 400px; }
+            .contact-form-box { padding: 30px 20px; }
+            .section-services { padding: 60px 5%; }
         }
 
-        @media (max-width: 600px) {
-            .hero h1 { font-size: 2.8rem; }
-            nav { display: none; }
+        @media (max-width: 480px) {
+            .hero h1 { letter-spacing: -1px; }
+            .services-compact-grid { grid-template-columns: 1fr; }
+            .contact-info-list { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <header>
+    <header id="header">
         <div class="logo">Pisos Madero</div>
         <nav>
             <a href="#servicios">SERVICIOS</a>
@@ -300,7 +329,7 @@
         </div>
     </section>
 
-    <!-- SERVICIOS COMPACTOS -->
+    <!-- SERVICIOS -->
     <section id="servicios" class="section-services">
         <div class="section-header" data-aos="fade-up">
             <span>Portfolio de Soluciones</span>
@@ -308,106 +337,96 @@
         </div>
 
         <div class="services-compact-grid">
-            <!-- Servicio 1 -->
-            <a href="https://wa.me/541154961754" class="service-box" data-aos="fade-up" data-aos-delay="100">
+            <a href="https://wa.me/541154961754" class="service-box" data-aos="fade-up">
                 <img src="https://lh3.googleusercontent.com/d/1L8fYFVqMeNWZbtFW8L2WpjZD9X39Mm5l" alt="Madera">
                 <div class="service-info">
                     <h3>Pisos de <br> Madera</h3>
-                    <p>Arreglos profundos, reparaciones, pulidos de precisión, plastificados y el exclusivo hidrolaqueado de alta gama.</p>
+                    <p>Arreglos profundos, pulidos de precisión e hidrolaqueado de alta gama.</p>
                 </div>
             </a>
 
-            <!-- Servicio 2 -->
-            <a href="https://wa.me/541154961754" class="service-box" data-aos="fade-up" data-aos-delay="200">
+            <a href="https://wa.me/541154961754" class="service-box" data-aos="fade-up" data-aos-delay="100">
                 <img src="https://lh3.googleusercontent.com/d/1CIfgsEGSHiH7hGd7EANS6csuD0Wzvmmw" alt="Piedra">
                 <div class="service-info">
                     <h3>Granito & <br> Mármol</h3>
-                    <p>Servicio premium de pulido y vitrificado para pisos de granito, mosaico y mármol. Brillo espejo garantizado.</p>
+                    <p>Pulido y vitrificado premium. Brillo espejo garantizado en mosaicos y mármol.</p>
                 </div>
             </a>
 
-            <!-- Servicio 3 -->
-            <a href="https://wa.me/541154961754" class="service-box" data-aos="fade-up" data-aos-delay="300">
+            <a href="https://wa.me/541154961754" class="service-box" data-aos="fade-up" data-aos-delay="200">
                 <img src="https://lh3.googleusercontent.com/d/1nw5Eyj9HlwCw1-F0EvRFsh8479UvFUZP" alt="SPC">
                 <div class="service-info">
                     <h3>Pisos SPC <br> Sistema Click</h3>
-                    <p>Alto tránsito y 100% antihumedad. <strong>Especial colocación rápida:</strong> renovamos su espacio en el día sin entrar en obra.</p>
+                    <p>100% antihumedad. Renovamos su espacio en el día sin entrar en obra.</p>
                 </div>
             </a>
         </div>
     </section>
 
     <!-- AREA DE COBERTURA -->
-    <section style="padding: 80px 5%; background: var(--bg-soft); text-align: center;">
+    <section style="padding: 60px 5%; background: var(--bg-soft); text-align: center;">
         <div data-aos="fade-up">
-            <h3 style="font-size: 2rem; font-weight: 800; text-transform: uppercase;">Servicio en todo CABA y Zona Sur</h3>
-            <p style="color: #888; margin-top: 10px;">Presupuestos a domicilio sin cargo. Calidad profesional garantizada.</p>
+            <h3 style="font-size: clamp(1.2rem, 4vw, 1.8rem); font-weight: 800; text-transform: uppercase;">Servicio en CABA y Zona Sur</h3>
+            <p style="color: #888; margin-top: 10px; font-size: 0.9rem;">Presupuestos a domicilio sin cargo.</p>
         </div>
     </section>
 
-    <!-- CONTACTO PREMIUM -->
+    <!-- CONTACTO -->
     <section id="contacto" class="contact-section">
         <div class="contact-grid">
             <div data-aos="fade-right">
-                <h2 style="font-size: 4rem; font-weight: 900; line-height: 0.9; letter-spacing: -3px; text-transform: uppercase;">Transforme <br> su espacio hoy.</h2>
+                <h2>Transforme <br> su espacio.</h2>
                 <div class="contact-info-list">
                     <div class="info-card">
-                        <i data-lucide="phone"></i>
+                        <i data-lucide="phone" size="18"></i>
                         <h4>WhatsApp</h4>
-                        <a href="tel:1154961754">11 5496 1754</a>
+                        <a href="https://wa.me/541154961754">11 5496 1754</a>
                     </div>
                     <div class="info-card">
-                        <i data-lucide="instagram"></i>
+                        <i data-lucide="instagram" size="18"></i>
                         <h4>Instagram</h4>
                         <a href="https://instagram.com/pisosmadero">@pisosmadero</a>
                     </div>
                     <div class="info-card">
-                        <i data-lucide="mail"></i>
+                        <i data-lucide="mail" size="18"></i>
                         <h4>Email</h4>
                         <p>pisosmaderos@gmail.com</p>
                     </div>
-                    <div class="info-card">
-                        <i data-lucide="globe"></i>
-                        <h4>Website</h4>
-                        <a href="https://www.pisosmadero.shop">pisosmadero.shop</a>
-                    </div>
                 </div>
             </div>
-            <div data-aos="fade-left" style="background: rgba(255,255,255,0.05); padding: 50px; border: 1px solid rgba(255,255,255,0.1);">
-                <h3 style="margin-bottom: 20px; font-weight: 900; font-size: 1.5rem;">Solicitar Cotización</h3>
-                <p style="margin-bottom: 30px; opacity: 0.7;">Nuestro equipo le brindará una propuesta detallada en menos de 24hs. Trabajamos con los mejores materiales del mercado.</p>
-                <a href="https://wa.me/541154961754" class="btn-main" style="width: 100%; text-align: center;">Contactar por WhatsApp</a>
+            <div class="contact-form-box" data-aos="fade-left">
+                <h3 style="margin-bottom: 15px; font-weight: 900; font-size: 1.3rem; text-transform: uppercase;">Cotización Inmediata</h3>
+                <p style="margin-bottom: 25px; opacity: 0.7; font-size: 0.9rem;">Reciba una propuesta detallada en menos de 24hs.</p>
+                <a href="https://wa.me/541154961754" class="btn-main" style="display: block; text-align: center; width: 100%;">Contactar Ahora</a>
             </div>
         </div>
     </section>
 
     <!-- FOOTER -->
     <footer style="padding: 40px 5%; background: #000; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
-        <div class="logo" style="color: #fff; font-size: 1.2rem;">Pisos Madero</div>
-        <div style="font-size: 0.7rem; color: rgba(255,255,255,0.4); letter-spacing: 2px;">© 2025 PREMIUM FLOORING RESTORATION</div>
+        <div class="logo" style="color: #fff; font-size: 1rem;">Pisos Madero</div>
+        <div style="font-size: 0.6rem; color: rgba(255,255,255,0.4); letter-spacing: 1px;">© 2025 PREMIUM FLOORING</div>
     </footer>
 
-    <!-- WHATSAPP LOGO FIJO -->
+    <!-- WHATSAPP FLOAT -->
     <a href="https://wa.me/541154961754" class="wpp-fixed" target="_blank">
-        <svg width="35" height="35" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.94 3.659 1.437 5.63 1.438h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-        </svg>
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.94 3.659 1.437 5.63 1.438h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
     </a>
 
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         lucide.createIcons();
-        AOS.init({ duration: 1200, once: true });
+        AOS.init({ duration: 1000, once: true, disable: 'mobile' });
 
         window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 80) {
-                header.style.padding = '12px 5%';
-                header.style.boxShadow = '0 10px 30px rgba(0,0,0,0.05)';
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.style.padding = '10px 5%';
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
             } else {
                 header.style.padding = '20px 5%';
-                header.style.boxShadow = 'none';
+                header.style.background = 'rgba(255, 255, 255, 0.85)';
             }
         });
     </script>
